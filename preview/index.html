@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CineFlow AI Mock MVP</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <button class="brand" data-view="dashboard">CineFlow AI</button>
+        <nav>
+          <button data-view="new">新建项目</button>
+          <button data-view="history">历史项目</button>
+        </nav>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <div class="mark">
+            <strong>CineFlow AI</strong>
+            <span>脚本与分镜规划台</span>
+          </div>
+          <button class="nav active" data-view="dashboard">工作台</button>
+          <button class="nav" data-view="new">新建项目</button>
+          <button class="nav" data-view="script">脚本生成</button>
+          <button class="nav" data-view="storyboard">分镜编辑</button>
+          <button class="nav" data-view="export">导出</button>
+          <button class="nav" data-view="history">历史项目</button>
+          <p class="note">MVP 闭环：输入创意 → 确认故事 → 编辑分镜 → 复制提示词 → 导出方案。</p>
+        </aside>
+
+        <main id="content"></main>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
