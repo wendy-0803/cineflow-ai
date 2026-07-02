@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import type { GeneratedStory, ProjectInput } from "../../../types";
 
 const DEFAULT_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
+const API_BASE_URL = (process.env.OPENAI_BASE_URL || "https://api.openai.com/v1").replace(/\/$/, "");
+const RESPONSES_PATH = process.env.OPENAI_RESPONSES_PATH || "/responses";
 
 const STORY_SCHEMA = {
   type: "object",
@@ -197,7 +199,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const response = await fetch("https://api.openai.com/v1/responses", {
+    const response = await fetch(`${API_BASE_URL}${RESPONSES_PATH}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,

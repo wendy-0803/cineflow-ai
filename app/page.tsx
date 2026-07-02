@@ -82,13 +82,6 @@ export default function Home() {
     } catch (error) {
       const message = error instanceof Error ? error.message : "故事生成失败，请稍后重试。";
       setGenerationError(message);
-      setProject({
-        ...mockProject,
-        input,
-        title: input.brief.includes("会议") ? "AI 会议纪要广告" : mockProject.title,
-        status: "script",
-        updatedAt: new Date().toISOString().slice(0, 10)
-      });
     } finally {
       setIsGeneratingStory(false);
     }
@@ -117,18 +110,6 @@ export default function Home() {
     } catch (error) {
       const message = error instanceof Error ? error.message : "分镜生成失败，请稍后重试。";
       setStoryboardError(message);
-      setProject({
-        ...project,
-        status: "storyboard",
-        versions: project.versions + 1,
-        updatedAt: new Date().toISOString().slice(0, 10),
-        shots: project.shots.map((shot, index) => ({
-          ...regenerateShot(shot),
-          targetTool: shot.targetTool ?? (index % 2 === 0 ? "kling" : "jimeng"),
-          promptLayers: shot.promptLayers ?? makePromptLayers(shot),
-          continuityNote: shot.continuityNote ?? "保持主角表情、服装和时间线一致。"
-        }))
-      });
     } finally {
       setIsGeneratingStoryboard(false);
     }
